@@ -4,6 +4,8 @@ services:
     build: .
     ports:
       - "8000:8000"
+    volumes:
+      - .:/var/www/html
     environment:
       DB_HOST: db
       DB_PORT: 3306
