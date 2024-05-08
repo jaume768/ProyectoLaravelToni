@@ -36,7 +36,7 @@ h2 {
     padding: 10px;
     cursor: pointer;
     font-size: 20px;
-    width: 97%; /* Hace que el botón ocupe todo el ancho */
+    width: 98%; /* Hace que el botón ocupe todo el ancho */
     box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
 

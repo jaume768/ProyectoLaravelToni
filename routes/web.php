@@ -30,8 +30,14 @@ Route::get('/particular', function (Request $request) {
     return view('particular', compact('section', 'reservations'));
 })->name('particular');
 
+Route::get('/admin', function (Request $request) {
+    $section = $request->query('section', 'default');
+    session(['section' => $section]);
+    return view('admin', compact('section'));
+})->name('admin');
 
 Route::get('/usuario/datos', [UserController::class, 'getUserData'])->name('user.datos');
 Route::post('/usuario/update', [UserController::class, 'updateUserData'])->name('user.update');
 
 Route::post('/reserva/crear', [ReservationController::class, 'store'])->name('reservation.store');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

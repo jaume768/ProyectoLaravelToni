@@ -49,7 +49,7 @@ $hotels = $hotelController->getHotels();
         Hotel de Destino/Recogida:
         <select name="id_hotel" required>
             <?php foreach ($hotels as $hotel): ?>
-                <option value="<?= $hotel->id ?>"><?= $hotel->name ?></option>
+                <option value="<?= $hotel->id_hotel ?>"><?= $hotel->nombre ?></option>
             <?php endforeach; ?>
         </select><br>
         

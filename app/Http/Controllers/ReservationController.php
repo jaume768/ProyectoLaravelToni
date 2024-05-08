@@ -15,13 +15,14 @@ class ReservationController extends Controller
             'id_hotel' => 'required|integer',
             'num_viajeros' => 'required|integer',
             'dia_llegada' => 'nullable|date',
-            'hora_llegada' => 'nullable|time',
+            'hora_llegada' => 'nullable|date_format:H:i',
             'numero_vuelo_llegada' => 'nullable|string',
             'origen_vuelo_entrada' => 'nullable|string',
             'dia_vuelo' => 'nullable|date',
-            'hora_vuelo' => 'nullable|time',
-            'hora_recogida' => 'nullable|time'
+            'hora_vuelo' => 'nullable|date_format:H:i', 
+            'hora_recogida' => 'nullable|date_format:H:i'
         ]);
+        
 
         $localizador = substr(md5(uniqid(rand(), true)), 0, 4);
         $email_cliente = $request->input('emailCliente', session('user_email'));
@@ -46,6 +47,6 @@ class ReservationController extends Controller
 
         $reservation->save();
 
-        return redirect()->route('particular.view')->with('success', 'Reserva creada con éxito.');
+        return redirect()->route('particular')->with('success', 'Reserva creada con éxito.');
     }
 }

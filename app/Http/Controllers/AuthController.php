@@ -56,7 +56,7 @@ class AuthController extends Controller
 
             switch ($user->rol) {
                 case 'Administrador':
-                    return redirect()->intended('admin_view');
+                    return redirect()->intended('admin');
                 case 'Particular':
                     return redirect()->intended('particular');
                 case 'Conductor':
@@ -68,6 +68,11 @@ class AuthController extends Controller
             return back()->withErrors(['email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.'])->withInput($request->except('password'));
         }
     }
-    
+
+    public function logout(Request $request) {
+        $request->session()->flush(); // Elimina todos los datos de la sesión
+        return redirect('/login')->with('msg', 'Sesión cerrada correctamente.');
+    }
+
 
 }    

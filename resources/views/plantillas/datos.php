@@ -34,3 +34,6 @@ if (isset($_SESSION['update_success'])): ?>
     <input type="email" id="email" name="email" value="<?= $user->email; ?>">
     <input type="submit" value="Actualizar Datos">
 </form>
+<form action="/logout" method="get">
+    <button type="submit" class="button-logout">Cerrar Sesión</button>
+</form>

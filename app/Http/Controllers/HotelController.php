@@ -8,7 +8,7 @@ class HotelController extends Controller
 {
     public function getHotels()
     {
-        $hotels = Hotel::select('id', 'nombre')->get();
+        $hotels = Hotel::select('id_hotel', 'nombre')->get();
 
         return $hotels;
     }

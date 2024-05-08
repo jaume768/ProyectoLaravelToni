@@ -13,6 +13,7 @@ class Hotel extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'id_hotel',
         'id_zona',
         'Comision',
         'nombre'
