@@ -43,30 +43,30 @@ class AuthController extends Controller
     
 
     public function loginUser(Request $request) {
-        $credentials = $request->validate([
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
-    
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-    
-            $user = Auth::user();
+
+        $user = TransferViajero::where('email', $request->email)->first();
+
+        if ($user && Hash::check($request->password, $user->password)) {
+
+            $request->session()->put('user_email', $user->email);
+
             switch ($user->rol) {
                 case 'Administrador':
                     return redirect()->intended('admin_view');
                 case 'Particular':
-                    return redirect()->intended('particular_view');
+                    return redirect()->intended('particular');
                 case 'Conductor':
                     return redirect()->intended('conductor_view');
                 default:
                     return redirect()->intended('home'); 
             }
+        } else {
+            return back()->withErrors(['email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.'])->withInput($request->except('password'));
         }
-    
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->withInput($request->except('password'));
     }
     
 
