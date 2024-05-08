@@ -41,3 +41,5 @@ Route::post('/usuario/update', [UserController::class, 'updateUserData'])->name(
 
 Route::post('/reserva/crear', [ReservationController::class, 'store'])->name('reservation.store');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/particular/reservas', [UserController::class, 'viewReservations'])->name('particular.reservas');
+Route::post('/reservas/cancelar/{id}', [UserController::class, 'cancelReservation'])->name('reservas.cancelar');

@@ -46,5 +46,17 @@ class UserController extends Controller
         session(['update_success' => 'Datos actualizados con éxito.']);
         return redirect()->back();
     }
+
+    public function cancelReservation($idReserva)
+    {
+        $reservation = TransferReserva::find($idReserva);
+
+        if ($reservation) {
+            $reservation->delete();
+            return back()->with('success', 'Reserva cancelada con éxito.');
+        }
+
+        return back()->with('error', 'Reserva no encontrada.');
+    }
 }
 
