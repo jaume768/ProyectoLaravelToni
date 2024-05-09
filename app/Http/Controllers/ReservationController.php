@@ -10,6 +10,7 @@ class ReservationController extends Controller
 {
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'id_tipo_reserva' => 'required|integer',
             'id_hotel' => 'required|integer',
@@ -42,11 +43,20 @@ class ReservationController extends Controller
             'fecha_vuelo_salida' => $validated['dia_vuelo'] ?? null,
             'hora_vuelo_salida' => $validated['hora_vuelo'] ?? null,
             'num_viajeros' => $validated['num_viajeros'],
-            'id_vehiculo' => 1 // Asumiendo un valor predeterminado
+            'id_vehiculo' => 1
         ]);
 
         $reservation->save();
 
-        return redirect()->route('particular')->with('success', 'Reserva creada con éxito.');
+        $rol = session('rol');
+        switch ($rol) {
+            case 'Administrador':
+                return redirect()->route('admin')->with('success', 'Reserva creada con éxito.');
+            case 'Particular':
+                return redirect()->route('particular')->with('success', 'Reserva creada con éxito.');
+            default:
+                return redirect()->route('particular')->with('success', 'Reserva creada con éxito.');
+        }
     }
 }
+

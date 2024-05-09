@@ -12,8 +12,11 @@ $hotels = $hotelController->getHotels();
 </head>
 <body>
 <div class="admin-container">
+    <?php if ($successMessage): ?>
+        <div class="success-message"><?= $successMessage ?></div>
+    <?php endif; ?>
     <h2>Crear reserva</h2>
-    <form action="<?= route('reservation.store'); ?>" method="post" id="reservationForm">
+    <form action="/reserva/crear" method="post" id="reservationForm">
         <input type="hidden" name="_token" value="<?= csrf_token(); ?>">
         
         <label for="emailCliente">Email del Cliente:</label>
@@ -51,7 +54,7 @@ $hotels = $hotelController->getHotels();
         <label for="hotelDestino">Hotel de destino/recogida:</label>
         <select id="hotelDestino" name="id_hotel">
             <?php foreach ($hotels as $hotel): ?>
-                <option value="<?= $hotel->id; ?>"><?= $hotel->nombre; ?></option>
+                <option value="<?= $hotel->id_hotel; ?>"><?= $hotel->nombre; ?></option>
             <?php endforeach; ?>
         </select>
 

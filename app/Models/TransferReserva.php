@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TransferReserva extends Model
 {
     protected $table = 'transfer_reservas';
+    protected $primaryKey = 'id_reserva';
 
     public $timestamps = false;
 

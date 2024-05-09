@@ -25,6 +25,14 @@ class UserController extends Controller
         return $user;
     }
 
+    public function searchReservations(Request $request)
+    {
+        $email = $request->input('email');
+        $reservations = $this->getUserReservations($email);
+        session(['reservations' => $reservations, 'search_email' => $email]);
+        return redirect('/admin?section=ver_reservas');
+    }
+
     public function updateUserData(Request $request)
     {
         $email = session('user_email');
@@ -47,16 +55,16 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function cancelReservation($idReserva)
+    public function cancelReservation(Request $request, $idReserva)
     {
         $reservation = TransferReserva::find($idReserva);
-
         if ($reservation) {
             $reservation->delete();
-            return back()->with('success', 'Reserva cancelada con éxito.');
+            return redirect('/admin?section=ver_reservas')->with('success', 'Reserva cancelada con éxito.');
         }
-
-        return back()->with('error', 'Reserva no encontrada.');
+    
+        return redirect('/admin?section=ver_reservas')->with('error', 'Reserva no encontrada.');
     }
+
 }
 

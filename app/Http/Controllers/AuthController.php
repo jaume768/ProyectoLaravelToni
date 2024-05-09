@@ -53,6 +53,7 @@ class AuthController extends Controller
         if ($user && Hash::check($request->password, $user->password)) {
 
             $request->session()->put('user_email', $user->email);
+            $request->session()->put('rol', $user->rol);
 
             switch ($user->rol) {
                 case 'Administrador':
@@ -60,7 +61,7 @@ class AuthController extends Controller
                 case 'Particular':
                     return redirect()->intended('particular');
                 case 'Conductor':
-                    return redirect()->intended('conductor_view');
+                    return redirect()->intended('conductor');
                 default:
                     return redirect()->intended('home'); 
             }

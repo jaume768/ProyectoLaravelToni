@@ -18,6 +18,9 @@ $hotels = $hotelController->getHotels();
     </script>
 </head>
 <body>
+    <?php if ($successMessage): ?>
+        <div class="success-message"><?= $successMessage ?></div>
+    <?php endif; ?>
     <h2>Crear Reserva</h2>
     <form action="<?= route('reservation.store') ?>" method="post">
         <input type="hidden" name="_token" value="<?= csrf_token(); ?>">

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ConductorController;
 use App\Http\Controllers\ReservationController;
 use Illuminate\Http\Request;
 
@@ -41,5 +42,7 @@ Route::post('/usuario/update', [UserController::class, 'updateUserData'])->name(
 
 Route::post('/reserva/crear', [ReservationController::class, 'store'])->name('reservation.store');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/particular/reservas', [UserController::class, 'viewReservations'])->name('particular.reservas');
-Route::post('/reservas/cancelar/{id}', [UserController::class, 'cancelReservation'])->name('reservas.cancelar');
+Route::post('/admin/cancelar-reserva/{id}', [UserController::class, 'cancelReservation'])->name('cancelar.reserva');
+Route::post('/admin/buscar-reservas', [UserController::class, 'searchReservations'])->name('admin.buscar.reservas');
+Route::get('/conductor', [ConductorController::class, 'index'])->name('conductor.index');
+Route::post('/conductor', [ConductorController::class, 'calendario'])->name('conductor.calendario');
