@@ -10,15 +10,15 @@
     <h1>Panel del Conductor</h1>
     <nav>
         <ul>
-            <li><a href="{{ route('conductor.index', ['section' => 'calendario']) }}" class="{{ request()->get('section') == 'calendario' ? 'active' : '' }}">Calendario de Trayectos</a>            </li>
+            <li><a href="{{ route('conductor.index', ['section' => 'calendario']) }}" class="{{ request()->get('section') == 'calendario' ? 'active' : '' }}">Calendario de Trayectos</a></li>
             <li><a href="{{ route('conductor.index', ['section' => 'datos']) }}" class="{{ request()->get('section') == 'datos' ? 'active' : '' }}">Mis Datos Personales</a></li>
         </ul>
     </nav>
 
-    @if (request()->get('section'))
-        @include('plantillas.calendario')
-    @else
+    @if (request()->get('section') == 'datos')
         @include('plantillas.datos')
+    @else
+        @include('plantillas.calendario')
     @endif
 </div>
 </body>

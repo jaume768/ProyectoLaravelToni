@@ -3,6 +3,12 @@ use App\Http\Controllers\HotelController;
 
 $hotelController = new HotelController();
 $hotels = $hotelController->getHotels();
+
+$successMessage = '';
+if(session()->has('successMessage')) {
+    $successMessage = session('successMessage');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

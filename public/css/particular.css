@@ -1,6 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #1a1a1a;
+    font-family: 'Arial', sans-serif;
+    background-color: #000000;
     color: #ffffff;
     margin: 0;
     padding: 0;
@@ -10,10 +10,8 @@ body {
 }
 
 .container {
-    width: 60%;
-    margin-top: 50px;
-    margin-left: auto; /* Añadido para centrar horizontalmente */
-    margin-right: auto; /* Añadido para centrar horizontalmente */
+    width: 50%;
+    margin: 50px auto;
     background-color: #333333;
     padding: 20px;
     border-radius: 8px;
@@ -26,22 +24,19 @@ h2 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
-    margin-top: 10px; /* Reducido el margen superior */
+    margin-top: 10px;
 }
 
 .button-logout {
-    background-color: red;
-    color: rgb(0, 0, 0);
+    background-color: #d32f2f;
+    color: black;
     border: none;
-    padding: 10px;
+    padding: 12px;
     cursor: pointer;
     font-size: 20px;
-    width: 98%; /* Hace que el botón ocupe todo el ancho */
-    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
-}
-
-h2 {
-    margin-top: 40px;
+    width: 98%;
+    box-sizing: border-box;
+    border-radius: 4px;
 }
 
 nav ul {
@@ -67,27 +62,26 @@ nav ul li a {
 
 nav ul li a.active,
 nav ul li a:hover {
-    background-color: #555555;
+    background-color: #686868;
     color: #ffffff;
 }
 
 label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     color: #cccccc;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 select,
 input,
 textarea {
-    width: calc(100% - 20px);
-    padding: 12px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: none;
-    border-radius: 3px;
-    background-color: #444444;
+    width: calc(100% - 24px);
+    padding: 10px;
+    margin: 5px 0 15px;
+    border: 2px solid #555555;
+    border-radius: 4px;
+    background-color: #333333;
     color: #ffffff;
     font-size: 16px;
     box-sizing: border-box;
@@ -96,14 +90,19 @@ textarea {
 input[type="submit"] {
     cursor: pointer;
     background-color: #4CAF50;
-    color: #000000;
-    font-size: 20px;
+    color: black;
+    font-size: 18px;
     transition: background-color 0.3s ease;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
 }
 
 input[type="submit"]:hover {
     background-color: #45a049;
 }
+
+
 
 table {
     width: 100%;
@@ -113,7 +112,10 @@ table {
 
 th,
 td {
-    padding: 12px;
-    border: 1px solid #ccc;
-    text-align: center; /* Modificado para centrar el texto */
+    padding: 15px; 
+    border: 3px solid #666666; 
+    text-align: center;
+    background-color: #222222; 
+    color: #ffffff; 
 }
+
