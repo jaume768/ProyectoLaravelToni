@@ -8,7 +8,7 @@ $comisiones = $adminController->calculateCommissions(new \Illuminate\Http\Reques
 
 <div class="ver-comisiones">
     <h2>Comisiones Mensuales</h2>
-    <form action="ver_comisiones.php" method="GET">
+    <form action="<?php echo route('admin.ver_comisiones'); ?>" method="GET">
         <label for="mes">Mes:</label>
         <select name="mes" id="mes">
             <?php for ($i = 1; $i <= 12; $i++): ?>

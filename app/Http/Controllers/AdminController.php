@@ -18,18 +18,21 @@ class AdminController extends Controller
     }
 
     public function updatePrices(Request $request) {
-        $request->validate([
+        $validatedData = $request->validate([
             'hotel' => 'required|exists:tranfer_hotel,id_hotel',
             'vehiculo' => 'required|exists:transfer_vehiculo,id_vehiculo',
             'precio' => 'required|numeric',
         ]);
 
-        TransferPrecio::updateOrCreate(
-            ['id_hotel' => $request->hotel, 'id_vehiculo' => $request->vehiculo],
-            ['precio' => $request->precio]
+        $precio = TransferPrecio::firstOrNew(
+            ['id_hotel' => $validatedData['hotel'], 'id_vehiculo' => $validatedData['vehiculo']]
         );
 
-        return response()->json(['message' => 'Precio actualizado con éxito.']);
+        $precio->Precio = $validatedData['precio'];
+        $precio->save();
+
+        $successMessage = urlencode('Precio actualizado con éxito.');
+        return redirect("/admin?section=precios&success=$successMessage");
     }
 
     public function calculateCommissions(Request $request) {
@@ -41,6 +44,13 @@ class AdminController extends Controller
             ->get();
 
         return $comisiones;
+    }
+
+    public function showCommissions(Request $request) {
+        $mes = $request->input('mes', date('m'));
+        $comisiones = $this->calculateCommissions($request);
+
+        return redirect('/admin?section=comisiones&mes=' . $mes);
     }
 }
 
