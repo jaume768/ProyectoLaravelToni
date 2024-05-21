@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ConductorController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
@@ -36,6 +37,10 @@ Route::get('/admin', function (Request $request) {
     session(['section' => $section]);
     return view('admin', compact('section'));
 })->name('admin');
+
+Route::get('/admin/hotels', [AdminController::class, 'listHotels']);
+Route::post('/admin/actualizar-precios', [AdminController::class, 'updatePrices'])->name('admin.actualizar_precios');
+Route::get('/admin/ver-comisiones', [AdminController::class, 'calculateCommissions'])->name('admin.ver_comisiones');
 
 Route::get('/usuario/datos', [UserController::class, 'getUserData'])->name('user.datos');
 Route::post('/usuario/update', [UserController::class, 'updateUserData'])->name('user.update');

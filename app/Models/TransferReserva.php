@@ -26,7 +26,8 @@ class TransferReserva extends Model
         'hora_vuelo_salida',
         'fecha_vuelo_salida',
         'num_viajeros',
-        'id_vehiculo'
+        'id_vehiculo',
+        'comision' 
     ];
 
     protected $dates = [
@@ -43,4 +44,9 @@ class TransferReserva extends Model
         return $this->belongsTo(TransferViajero::class, 'email_cliente', 'email');
     }
 
+    public function hotel()
+    {
+        return $this->belongsTo(TransferHotel::class, 'id_hotel');
+    }
 }
+

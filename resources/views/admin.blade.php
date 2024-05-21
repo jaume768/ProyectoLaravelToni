@@ -14,6 +14,8 @@
             <li><a href="{{ route('admin', ['section' => 'reserva']) }}" class="{{ request()->get('section') == 'reserva' ? 'active' : '' }}">Crear Reserva</a></li>
             <li><a href="{{ route('admin', ['section' => 'datos']) }}" class="{{ request()->get('section') == 'datos' ? 'active' : '' }}">Mis Datos</a></li>
             <li><a href="{{ route('admin', ['section' => 'ver_reservas']) }}" class="{{ request()->get('section') == 'ver_reservas' ? 'active' : '' }}">Ver Reservas</a></li>
+            <li><a href="{{ route('admin', ['section' => 'precios']) }}" class="{{ request()->get('section') == 'precios' ? 'active' : '' }}">Gestionar Precios</a></li>
+            <li><a href="{{ route('admin', ['section' => 'comisiones']) }}" class="{{ request()->get('section') == 'comisiones' ? 'active' : '' }}">Ver Comisiones</a></li>
         </ul>
     </nav>
 
@@ -28,6 +30,14 @@
 
         @case('ver_reservas')
             @include('plantillas.reservas_particulares')
+            @break
+
+        @case('precios')
+            @include('plantillas.gestion_precios')
+            @break
+
+        @case('comisiones')
+            @include('plantillas.ver_comisiones')
             @break
 
         @default
