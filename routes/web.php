@@ -41,6 +41,7 @@ Route::get('/admin', function (Request $request) {
 Route::get('/admin/hotels', [AdminController::class, 'listHotels']);
 Route::post('/admin/actualizar-precios', [AdminController::class, 'updatePrices'])->name('admin.actualizar_precios');
 Route::get('/admin/comisiones', [AdminController::class, 'showCommissions'])->name('admin.ver_comisiones');
+Route::get('/reservas/zonas', [ReservationController::class, 'reservasPorZonas']);
 
 Route::get('/usuario/datos', [UserController::class, 'getUserData'])->name('user.datos');
 Route::post('/usuario/update', [UserController::class, 'updateUserData'])->name('user.update');

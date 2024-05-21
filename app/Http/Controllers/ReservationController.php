@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TransferReserva;
 use Illuminate\Support\Facades\DB;
+use App\Models\TransferZona;
 
 class ReservationController extends Controller
 {
@@ -57,6 +58,27 @@ class ReservationController extends Controller
             default:
                 return redirect()->route('particular')->with('success', 'Reserva creada con éxito.');
         }
+    }
+
+    public function reservasPorZonas()
+    {
+        // Obtener todas las zonas
+        $zonas = TransferZona::all();
+
+        // Calcular las reservas por zona
+        $totalReservas = TransferReserva::count();
+        $resultados = $zonas->map(function ($zona) use ($totalReservas) {
+            $reservasPorZona = TransferReserva::where('id_destino', $zona->id_zona)->count();
+            $porcentaje = $totalReservas ? ($reservasPorZona / $totalReservas) * 100 : 0;
+
+            return [
+                'zona' => $zona->descripcion,
+                'numero_traslados' => $reservasPorZona,
+                'porcentaje_total' => round($porcentaje, 2)
+            ];
+        });
+
+        return response()->json($resultados);
     }
 }
 
